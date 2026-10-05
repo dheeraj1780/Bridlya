@@ -129,22 +129,26 @@ def svg_layers():
     return s + '</svg>'
 
 def svg_rings():
-    s = '<svg viewBox="0 0 600 330" class="fig">'
-    for r, c, lab in ((150, '#f3e6e1', 'FURTHER OUT'), (108, '#ecd2cb', 'GROWING OUTWARD'), (66, '#e2b3a8', 'WHERE WE BEGIN')):
-        s += f'<circle cx="300" cy="170" r="{r}" fill="{c}" stroke="{RED}" stroke-opacity=".5"/><text x="300" y="{170 - r + 16}" text-anchor="middle" font-size="8" letter-spacing="2" fill="{DEEP}" font-family="Inter">{lab}</text>'
-    s += f'<circle cx="300" cy="180" r="36" fill="{RED}"/><text x="300" y="185" text-anchor="middle" font-size="16" font-style="italic" fill="#f7f1e6" font-family="Cormorant Garamond">a wedding</text>'
+    s = '<svg viewBox="0 0 600 340" class="fig">'
+    for r, c in ((160, '#f3e6e1'), (115, '#ecd2cb'), (70, '#e2b3a8')):
+        s += f'<circle cx="300" cy="170" r="{r}" fill="{c}" stroke="{RED}" stroke-opacity=".5"/>'
+    for r, lab in ((160, 'FURTHER OUT'), (115, 'GROWING OUTWARD'), (70, 'WHERE WE BEGIN')):
+        y = 170 - r + 22
+        s += f'<text x="300" y="{y}" text-anchor="middle" font-size="9" letter-spacing="1.6" fill="{DEEP}" font-family="Inter" font-weight="600">{lab}</text>'
+    s += f'<circle cx="300" cy="190" r="34" fill="{RED}"/><text x="300" y="195" text-anchor="middle" font-size="15" font-style="italic" fill="#f7f1e6" font-family="Cormorant Garamond">a wedding</text>'
     return s + '</svg>'
 
 def svg_roadmap():
-    ph = [('PHASE 1', 'Prove the model', 'Pilot weddings, one launch city'), ('PHASE 2', 'Systemise', 'Partner network, run-sheets, payments'),
-          ('PHASE 3', 'Expand', 'More cities, destination weddings'), ('PHASE 4', 'Extend', 'Travel, gifting, private events')]
-    s = '<svg viewBox="0 0 600 120" class="fig"><line x1="20" y1="40" x2="580" y2="40" stroke="#b3261e" stroke-width="2"/>'
+    ph = [('PHASE 1', 'Prove the model', ['Pilot weddings in', 'one launch city']), ('PHASE 2', 'Systemise', ['Partner network,', 'run-sheets, payments']),
+          ('PHASE 3', 'Expand', ['More cities and', 'destination weddings']), ('PHASE 4', 'Extend', ['Travel, gifting and', 'private events'])]
+    s = '<svg viewBox="0 0 600 130" class="fig"><line x1="20" y1="40" x2="580" y2="40" stroke="#b3261e" stroke-width="2"/>'
     for i, (a, b, c) in enumerate(ph):
         x = 20 + i * 148
         s += f'<circle cx="{x + 8}" cy="40" r="8" fill="{RED if i == 0 else "#fbf8f1"}" stroke="{RED}" stroke-width="2"/>'
         s += f'<text x="{x}" y="18" font-size="9" letter-spacing="2" fill="{RED}" font-family="Inter" font-weight="600">{a}</text>'
         s += f'<text x="{x}" y="72" font-size="17" fill="{INK}" font-family="Cormorant Garamond" font-weight="500">{b}</text>'
-        s += f'<text x="{x}" y="90" font-size="8.6" fill="{SOFT}" font-family="Inter">{c}</text>'
+        for k, line in enumerate(c):
+            s += f'<text x="{x}" y="{90 + k * 12}" font-size="8.6" fill="{SOFT}" font-family="Inter">{line}</text>'
     return s + '</svg>'
 
 # ---------- document pieces ----------
